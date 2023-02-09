@@ -17,6 +17,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
+        
+        let appearnace = UINavigationBarAppearance()
+        
+        UINavigationBar.appearance().standardAppearance = appearnace
+        UINavigationBar.appearance().compactAppearance = appearnace
+        UINavigationBar.appearance().scrollEdgeAppearance = appearnace
+        UINavigationBar.appearance().tintColor = UIColor.white
+        
+        appearnace.backgroundColor = UIColor(hexCode: "7371fc")
+        appearnace.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        appearnace.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
