@@ -33,7 +33,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y6n-sz-jja">
                                             <rect key="frame" x="287.33333333333331" y="21.000000000000004" width="75.666666666666686" height="38.333333333333343"/>
                                             <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="32"/>
-                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="textColor" systemColor="systemGrayColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -59,7 +59,7 @@
                         <barButtonItem key="leftBarButtonItem" title="Settings" id="Nc6-Pg-HiA"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="4AK-ki-qGk">
                             <connections>
-                                <segue destination="dRX-S8-YZN" kind="presentation" id="IUu-b4-JlV"/>
+                                <segue destination="dRX-S8-YZN" kind="presentation" modalPresentationStyle="fullScreen" id="IUu-b4-JlV"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -73,12 +73,47 @@
             <objects>
                 <viewController id="cqO-ZW-BDG" customClass="AddWeatherCityViewController" customModule="GoodWeather" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Uej-hs-Bg6">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZHr-uy-IDz">
+                                <rect key="frame" x="161.66666666666666" y="207" width="70" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="FzX-Cb-bTn"/>
+                                    <constraint firstAttribute="width" constant="70" id="Uzf-yC-2A9"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Save"/>
+                                <connections>
+                                    <action selector="saveCityButtonPressed:" destination="cqO-ZW-BDG" eventType="touchUpInside" id="fdT-c5-iUg"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="apG-Ge-G3O">
+                                <rect key="frame" x="50" y="153" width="293" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="YPn-Jg-BID"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="apG-Ge-G3O" firstAttribute="leading" secondItem="YPn-Jg-BID" secondAttribute="leading" constant="50" id="Nws-WV-3iy"/>
+                            <constraint firstItem="apG-Ge-G3O" firstAttribute="top" secondItem="YPn-Jg-BID" secondAttribute="top" constant="50" id="T2S-dN-b2y"/>
+                            <constraint firstItem="YPn-Jg-BID" firstAttribute="trailing" secondItem="apG-Ge-G3O" secondAttribute="trailing" constant="50" id="eBn-GD-YcS"/>
+                            <constraint firstItem="ZHr-uy-IDz" firstAttribute="centerX" secondItem="Uej-hs-Bg6" secondAttribute="centerX" id="hvJ-0J-Qqw"/>
+                            <constraint firstItem="ZHr-uy-IDz" firstAttribute="top" secondItem="apG-Ge-G3O" secondAttribute="bottom" constant="20" id="lfe-cR-Ebi"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Add City" id="ABO-6s-wUT"/>
+                    <navigationItem key="navigationItem" title="Add City" id="ABO-6s-wUT">
+                        <barButtonItem key="leftBarButtonItem" title="Close" id="B2B-Zp-pGu">
+                            <connections>
+                                <action selector="closeButtonPressed:" destination="cqO-ZW-BDG" id="hZh-QW-LIA"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="cityNameTextField" destination="apG-Ge-G3O" id="trj-q2-tGk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bIj-sB-b0T" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -108,7 +143,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dRX-S8-YZN" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="YYy-2w-YEn">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="56"/>
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -124,6 +159,9 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

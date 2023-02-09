@@ -9,9 +9,19 @@ import UIKit
 
 class AddWeatherCityViewController: UIViewController {
     
+    @IBOutlet weak var cityNameTextField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
- 
     }
+    
+    @IBAction func saveCityButtonPressed(_ sender: UIButton) {
+        
+    }
+    
+    @IBAction func closeButtonPressed(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true)
+    }
+    
 }
