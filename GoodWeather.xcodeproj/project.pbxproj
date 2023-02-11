@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6573F4542997B38F00D700B8 /* WeatherListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6573F4532997B38F00D700B8 /* WeatherListViewModel.swift */; };
 		65887F7E29974B1C00D891D7 /* Webservice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65887F7D29974B1C00D891D7 /* Webservice.swift */; };
 		65887F81299754CE00D891D7 /* WeatherResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65887F80299754CE00D891D7 /* WeatherResponse.swift */; };
 		65887F852997595F00D891D7 /* AddWeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65887F842997595F00D891D7 /* AddWeatherViewModel.swift */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6573F4532997B38F00D700B8 /* WeatherListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherListViewModel.swift; sourceTree = "<group>"; };
 		65887F7D29974B1C00D891D7 /* Webservice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Webservice.swift; sourceTree = "<group>"; };
 		65887F80299754CE00D891D7 /* WeatherResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherResponse.swift; sourceTree = "<group>"; };
 		65887F842997595F00D891D7 /* AddWeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWeatherViewModel.swift; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 		65887F832997592100D891D7 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				6573F4532997B38F00D700B8 /* WeatherListViewModel.swift */,
 				65887F842997595F00D891D7 /* AddWeatherViewModel.swift */,
 			);
 			path = ViewModels;
@@ -236,6 +239,7 @@
 				65887F81299754CE00D891D7 /* WeatherResponse.swift in Sources */,
 				65AD77252994E36000E42073 /* UIColor+Extenstion.swift in Sources */,
 				65887F852997595F00D891D7 /* AddWeatherViewModel.swift in Sources */,
+				6573F4542997B38F00D700B8 /* WeatherListViewModel.swift in Sources */,
 				65887F8A29975C0100D891D7 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
