@@ -7,34 +7,42 @@
 
 import UIKit
 
+protocol AddWeatherDelegate: AnyObject {
+    func addWeatherDidSave(viewModel: WeatherViewModel)
+}
+
 class AddWeatherCityViewController: UIViewController {
     
+    private var addWeatherViewModel = AddWeatherViewModel()
     @IBOutlet weak var cityNameTextField: UITextField!
+    @IBOutlet weak var saveButton: UIButton!
+    
+    weak var delegate: AddWeatherDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.cityNameTextField.delegate = self
     }
     
     @IBAction func saveCityButtonPressed(_ sender: UIButton) {
         
         if let city = cityNameTextField.text {
-            
-            let weatherURL = URL(string: "https://api.openweathermap.org/data/2.5/weather?q=\(city)&appid=\(Bundle.main.apiKey)")!
-            
-            let weatherReource = Resource<Any>(url: weatherURL) { data in
-                return data
-            }
-            
-            Webservice().load(resource: weatherReource) { result in
-                
+            addWeatherViewModel.addWeather(for: city) { viewModel in
+                self.delegate?.addWeatherDidSave(viewModel: viewModel)
+                self.dismiss(animated: true)
             }
         }
-        
     }
     
     @IBAction func closeButtonPressed(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true)
     }
+}
+
+extension AddWeatherCityViewController: UITextFieldDelegate {
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        saveCityButtonPressed(saveButton)
+        return true
+    }
 }

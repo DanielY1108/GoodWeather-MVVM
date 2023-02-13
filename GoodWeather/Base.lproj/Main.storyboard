@@ -59,7 +59,7 @@
                         <barButtonItem key="leftBarButtonItem" title="Settings" id="Nc6-Pg-HiA"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="4AK-ki-qGk">
                             <connections>
-                                <segue destination="dRX-S8-YZN" kind="presentation" modalPresentationStyle="fullScreen" id="IUu-b4-JlV"/>
+                                <segue destination="dRX-S8-YZN" kind="presentation" identifier="AddWeatherCityViewController" modalPresentationStyle="fullScreen" id="IUu-b4-JlV"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -113,6 +113,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="cityNameTextField" destination="apG-Ge-G3O" id="trj-q2-tGk"/>
+                        <outlet property="saveButton" destination="ZHr-uy-IDz" id="11P-wY-nqd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bIj-sB-b0T" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
