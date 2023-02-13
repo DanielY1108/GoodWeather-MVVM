@@ -7,16 +7,25 @@
 
 import UIKit
 
+protocol SettingsDelegate: AnyObject {
+    func settingsDone(_ viewController: SettingTableViewController, viewModel: SettingsViewModel)
+}
+
 class SettingTableViewController: UITableViewController {
     
     private var settingViewModel = SettingsViewModel()
+    
+    weak var delegate: SettingsDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.prefersLargeTitles = true
     }
     
-    @IBAction func closeButtonTapped(_ sender: UIBarButtonItem) {
+    @IBAction func doneButtonTapped(_ sender: UIBarButtonItem) {
+        if let delegate = delegate {
+            delegate.settingsDone(self, viewModel: settingViewModel)
+        }
         self.dismiss(animated: true)
     }
     

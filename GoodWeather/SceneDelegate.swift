@@ -28,6 +28,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         appearnace.backgroundColor = UIColor(hexCode: "7371fc")
         appearnace.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         appearnace.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        
+        setupDefaultSettings()
+    }
+ 
+    private func setupDefaultSettings() {
+        
+        let userDefaults = UserDefaults.standard
+        if userDefaults.value(forKey: "unit") == nil {
+            userDefaults.set(Unit.celsius.rawValue, forKey: "unit")
+        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

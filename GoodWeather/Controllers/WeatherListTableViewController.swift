@@ -10,10 +10,17 @@ import UIKit
 class WeatherListTableViewController: UITableViewController {
     
     private var weatherListViewModel = WeatherListViewModel()
+    private var lastUnitSelection: Unit!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.prefersLargeTitles = true
+        
+        // 저장된 유저디폴트를 먼저 불러준 뒤 사용
+        let userDefault = UserDefaults.standard
+        if let value = userDefault.value(forKey: "unit") as? String {
+            self.lastUnitSelection = Unit(rawValue: value)
+        }
     }
     
     // 데이터 전달을 위해 제약조건을 만들어 줌
@@ -23,6 +30,8 @@ class WeatherListTableViewController: UITableViewController {
         // 대리자는 현재 이 컨트롤러가 된다!
         if segue.identifier == "AddWeatherCityViewController" {
             prepareSegueForAddWeatherCityViewController(segue: segue)
+        } else if segue.identifier == "SettingsTableViewController" {
+            prepareSegueForSettingViewController(segue: segue)
         }
     }
     
@@ -35,12 +44,37 @@ class WeatherListTableViewController: UITableViewController {
         guard let addWeatherCityVC = nav.viewControllers.first as? AddWeatherCityViewController else {
             fatalError("AddWeatherCityController not found")
         }
-        // 대리자를 뷰켠으로 지정
+        // AddWeather 대리자를 뷰켠으로 지정
         addWeatherCityVC.delegate = self
     }
     
+    private func prepareSegueForSettingViewController(segue: UIStoryboardSegue) {
+        guard let nav = segue.destination as? UINavigationController else {
+            fatalError("NavigationController not found")
+        }
+        guard let settingsVC = nav.viewControllers.first as? SettingTableViewController else {
+            fatalError("SettingTableViewController not found")
+        }
+        settingsVC.delegate = self
+    }
+    
+    
 }
 
+// MARK: - setting delegate
+extension WeatherListTableViewController: SettingsDelegate {
+    
+    func settingsDone(_ viewController: SettingTableViewController, viewModel: SettingsViewModel) {
+        if lastUnitSelection.rawValue != viewModel.selectedUnit.rawValue {
+            weatherListViewModel.updateUnit(to: viewModel.selectedUnit)
+            tableView.reloadData()
+            self.lastUnitSelection = viewModel.selectedUnit
+        }
+    }
+    
+    
+}
+// MARK: - add delegate
 extension WeatherListTableViewController: AddWeatherDelegate {
     
     func addWeatherDidSave(viewModel: WeatherViewModel) {

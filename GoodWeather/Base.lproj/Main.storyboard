@@ -32,9 +32,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Settings" id="scd-y0-h7e">
-                        <barButtonItem key="leftBarButtonItem" title="Close" id="XtC-tQ-xpb">
+                        <barButtonItem key="rightBarButtonItem" title="Done" id="oAd-q7-De6">
                             <connections>
-                                <action selector="closeButtonTapped:" destination="yp3-oL-n4j" id="sA8-7e-jIM"/>
+                                <action selector="doneButtonTapped:" destination="yp3-oL-n4j" id="Pjd-Aj-lPe"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -93,7 +93,7 @@
                     <navigationItem key="navigationItem" title="GoodWeather" id="RgW-bu-E5e">
                         <barButtonItem key="leftBarButtonItem" title="Settings" id="Nc6-Pg-HiA">
                             <connections>
-                                <segue destination="RV3-eC-vGT" kind="presentation" modalPresentationStyle="fullScreen" id="jwI-RC-zEE"/>
+                                <segue destination="RV3-eC-vGT" kind="presentation" identifier="SettingsTableViewController" modalPresentationStyle="fullScreen" id="jwI-RC-zEE"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="4AK-ki-qGk">
