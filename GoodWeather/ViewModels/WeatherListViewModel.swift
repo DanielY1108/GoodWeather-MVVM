@@ -7,25 +7,25 @@
 
 import Foundation
 
-class WeatherListViewModel {
+struct WeatherListViewModel {
     
-    private var weatherViewModel = [WeatherViewModel]()
+    private(set) var weatherViewModels = [WeatherViewModel]()
     
-    func addWeatherViewModel(_ viewModel: WeatherViewModel) {
-        weatherViewModel.append(viewModel)
+    mutating func addWeatherViewModel(_ viewModel: WeatherViewModel) {
+        self.weatherViewModels.append(viewModel)
     }
     
     func numberOfRaws(_ section: Int) -> Int {
-        return weatherViewModel.count
+        return self.weatherViewModels.count
     }
     
     func modelAt(_ index: Int) -> WeatherViewModel {
-        return weatherViewModel[index]
+        return self.weatherViewModels[index]
     }
     
-    private func toCelsius() {
+    private mutating func toCelsius() {
         
-        weatherViewModel = weatherViewModel.map { viewModel in
+        self.weatherViewModels = weatherViewModels.map { viewModel in
             let weatherModel = viewModel
             // ℃ = (℉ − 32) × 5/9 화씨 -> 도씨
             weatherModel.temperature = (weatherModel.temperature - 32) * 5 / 9
@@ -33,8 +33,8 @@ class WeatherListViewModel {
         }
     }
     
-    private func toFahrenheit() {
-        weatherViewModel = weatherViewModel.map { viewModel in
+    private mutating func toFahrenheit() {
+        self.weatherViewModels = weatherViewModels.map { viewModel in
             let weatherModel = viewModel
             // (0°C × 9/5) + 32 = 32°F 공식 도씨 -> 화씨
             weatherModel.temperature = (weatherModel.temperature * 9 / 5) + 32
@@ -42,12 +42,12 @@ class WeatherListViewModel {
         }
     }
     
-    func updateUnit(to unit: Unit) {
+    mutating func updateUnit(to unit: Unit) {
         switch unit {
         case .celsius:
-            toCelsius()
+            self.toCelsius()
         case .fahrenheit:
-            toFahrenheit()
+            self.toFahrenheit()
         }
     }
 }
